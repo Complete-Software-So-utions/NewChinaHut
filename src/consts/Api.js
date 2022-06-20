@@ -34,7 +34,7 @@ const Put = async (url, data, token) => {
   }
 };
 
-const Get = async (url, data, token) => {
+const Get = async (url, token) => {
   const headers = {
     headers: {
       'Content-Type': 'application/json',
