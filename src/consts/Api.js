@@ -4,8 +4,10 @@ import {Alert} from 'react-native';
 
 const Post = async (url, data, token) => {
   const headers = {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${token}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
   };
 
   try {
@@ -18,8 +20,10 @@ const Post = async (url, data, token) => {
 
 const Put = async (url, data, token) => {
   const headers = {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${token}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
   };
 
   try {
@@ -32,8 +36,10 @@ const Put = async (url, data, token) => {
 
 const Get = async (url, data, token) => {
   const headers = {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${token}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
   };
 
   try {
