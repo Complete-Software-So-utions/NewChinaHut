@@ -27,7 +27,31 @@ const Signup = () => {
       <View style={{marginTop: height * 0.02}}>
         <View style={styles.con}>
           <Image
+            source={require('../assets/user.png')}
+            resizeMode="contain"
+            style={styles.icon}
+          />
+          <TextInput style={styles.ti} onChangeText={() => {}} />
+        </View>
+        <View style={styles.con}>
+          <Image
+            source={require('../assets/user.png')}
+            resizeMode="contain"
+            style={styles.icon}
+          />
+          <TextInput style={styles.ti} onChangeText={() => {}} />
+        </View>
+        <View style={styles.con}>
+          <Image
             source={require('../assets/email.png')}
+            resizeMode="contain"
+            style={styles.icon}
+          />
+          <TextInput style={styles.ti} onChangeText={() => {}} />
+        </View>
+        <View style={styles.con}>
+          <Image
+            source={require('../assets/pass.png')}
             resizeMode="contain"
             style={styles.icon}
           />
@@ -52,7 +76,7 @@ const Signup = () => {
           fontWeight: 'bold',
           color: 'black',
         }}>
-        Login with social login
+        Singnup with social account
       </Text>
       <View
         style={{

@@ -53,7 +53,7 @@ const Login = () => {
           fontWeight: 'bold',
           color: 'black',
         }}>
-        Login with social login
+        Login with social account
       </Text>
       <View
         style={{
