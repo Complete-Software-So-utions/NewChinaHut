@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import React from 'react';
 import {scale} from 'react-native-size-matters';
+import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const {width, height} = Dimensions.get('window');
 
@@ -39,6 +41,29 @@ const Login = () => {
           />
           <TextInput style={styles.ti} onChangeText={() => {}} />
         </View>
+      </View>
+      <Text style={styles.for}>Forgot your password?</Text>
+      <View style={styles.login}>
+        <Text style={styles.text}>Login</Text>
+      </View>
+      <Text
+        style={{
+          marginTop: height * 0.03,
+          fontSize: scale(15),
+          fontWeight: 'bold',
+          color: 'black',
+        }}>
+        Login with social login
+      </Text>
+      <View
+        style={{
+          flexDirection: 'row',
+          marginTop: height * 0.02,
+          width: width * 0.25,
+          justifyContent: 'space-between',
+        }}>
+        <Entypo name="facebook" size={scale(40)} color="blue" />
+        <AntDesign name="google" size={scale(40)} color="red" />
       </View>
     </View>
   );
@@ -82,7 +107,7 @@ const styles = StyleSheet.create({
     borderWidth: scale(1),
     borderColor: 'lightgrey',
     width: width * 0.8,
-    height: height * 0.07,
+    height: height * 0.06,
     marginTop: height * 0.01,
     justifyContent: 'space-evenly',
     alignItems: 'center',
@@ -91,5 +116,24 @@ const styles = StyleSheet.create({
   ti: {
     width: width * 0.7,
     height: height * 0.05,
+  },
+  for: {
+    marginTop: height * 0.02,
+    color: 'black',
+    fontSize: scale(15),
+    fontWeight: 'bold',
+  },
+  login: {
+    width: width * 0.7,
+    height: height * 0.07,
+    backgroundColor: 'maroon',
+    borderRadius: scale(25),
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: height * 0.01,
+  },
+  text: {
+    color: 'white',
+    fontSize: scale(15),
   },
 });
