@@ -6,7 +6,7 @@ const Post = async (url, data, token) => {
   const headers = {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
+      Authorization: token ? `Bearer ${token}` : '',
     },
   };
 
@@ -22,7 +22,7 @@ const Put = async (url, data, token) => {
   const headers = {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
+      Authorization: token ? `Bearer ${token}` : '',
     },
   };
 
@@ -38,7 +38,7 @@ const Get = async (url, token) => {
   const headers = {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
+      Authorization: token ? `Bearer ${token}` : '',
     },
   };
 
