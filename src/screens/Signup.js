@@ -76,7 +76,7 @@ const Signup = () => {
           fontWeight: 'bold',
           color: 'black',
         }}>
-        Singnup with social account
+        Signnup with social account
       </Text>
       <View
         style={{
