@@ -5,6 +5,7 @@ import {
   Dimensions,
   Image,
   TextInput,
+  TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 import {scale} from 'react-native-size-matters';
@@ -13,12 +14,12 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const {width, height} = Dimensions.get('window');
 
-const Login = () => {
+const Login = props => {
   return (
     <View style={styles.bg}>
       <Image
         source={require('../assets/image33.jpg')}
-        resizeMode="contain"
+        resizeMode="stretch"
         style={styles.header}
       />
       <Text style={styles.log}>Login</Text>
@@ -42,10 +43,18 @@ const Login = () => {
           <TextInput style={styles.ti} onChangeText={() => {}} />
         </View>
       </View>
-      <Text style={styles.for}>Forgot your password?</Text>
-      <View style={styles.login}>
-        <Text style={styles.text}>Login</Text>
+      <View style={{flexDirection: 'row', marginTop: height * 0.01}}>
+        <Text style={styles.dont}>Don't Have an Account?</Text>
+        <Text
+          style={styles.su}
+          onPress={() => props.navigation.navigate('Signup')}>
+          Signup
+        </Text>
       </View>
+      <Text style={styles.for}>Forgot your password?</Text>
+      <TouchableOpacity style={styles.login}>
+        <Text style={styles.text}>Login</Text>
+      </TouchableOpacity>
       <Text
         style={{
           marginTop: height * 0.03,
@@ -95,7 +104,7 @@ const styles = StyleSheet.create({
   },
   nch: {
     marginTop: height * 0.01,
-    color: 'red',
+    color: 'maroon',
     fontSize: scale(30),
   },
   icon: {
@@ -135,5 +144,15 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontSize: scale(15),
+  },
+  dont: {
+    color: 'black',
+    fontSize: scale(15),
+    fontWeight: 'bold',
+  },
+  su: {
+    color: 'maroon',
+    fontSize: scale(15),
+    fontWeight: 'bold',
   },
 });
