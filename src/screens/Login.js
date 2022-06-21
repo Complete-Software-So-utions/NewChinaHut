@@ -5,6 +5,7 @@ import {
   Dimensions,
   Image,
   TextInput,
+  TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 import {scale} from 'react-native-size-matters';
@@ -51,9 +52,9 @@ const Login = props => {
         </Text>
       </View>
       <Text style={styles.for}>Forgot your password?</Text>
-      <View style={styles.login}>
+      <TouchableOpacity style={styles.login}>
         <Text style={styles.text}>Login</Text>
-      </View>
+      </TouchableOpacity>
       <Text
         style={{
           marginTop: height * 0.03,
