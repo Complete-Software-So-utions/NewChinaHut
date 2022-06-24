@@ -6,6 +6,7 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
 import React from 'react';
 import {scale} from 'react-native-size-matters';
@@ -16,10 +17,10 @@ const {width, height} = Dimensions.get('window');
 
 const Signup = props => {
   return (
-    <View style={styles.bg}>
+    <ImageBackground style={styles.bg}>
       <Image
         source={require('../assets/image33.jpg')}
-        resizeMode="stretch"
+        resizeMode="contain"
         style={styles.header}
       />
       <Text style={styles.log}>Signup</Text>
@@ -32,7 +33,11 @@ const Signup = props => {
             resizeMode="contain"
             style={styles.icon}
           />
-          <TextInput style={styles.ti} onChangeText={() => {}} />
+          <TextInput
+            style={styles.ti}
+            placeholder="First Name"
+            onChangeText={() => {}}
+          />
         </View>
         <View style={styles.con}>
           <Image
@@ -40,7 +45,11 @@ const Signup = props => {
             resizeMode="contain"
             style={styles.icon}
           />
-          <TextInput style={styles.ti} onChangeText={() => {}} />
+          <TextInput
+            style={styles.ti}
+            placeholder="Last Name"
+            onChangeText={() => {}}
+          />
         </View>
         <View style={styles.con}>
           <Image
@@ -48,7 +57,11 @@ const Signup = props => {
             resizeMode="contain"
             style={styles.icon}
           />
-          <TextInput style={styles.ti} onChangeText={() => {}} />
+          <TextInput
+            style={styles.ti}
+            placeholder="Email"
+            onChangeText={() => {}}
+          />
         </View>
         <View style={styles.con}>
           <Image
@@ -56,7 +69,11 @@ const Signup = props => {
             resizeMode="contain"
             style={styles.icon}
           />
-          <TextInput style={styles.ti} onChangeText={() => {}} />
+          <TextInput
+            style={styles.ti}
+            placeholder="Password"
+            onChangeText={() => {}}
+          />
         </View>
         <View style={styles.con}>
           <Image
@@ -64,7 +81,11 @@ const Signup = props => {
             resizeMode="contain"
             style={styles.icon}
           />
-          <TextInput style={styles.ti} onChangeText={() => {}} />
+          <TextInput
+            style={styles.ti}
+            placeholder="Confirm Password"
+            onChangeText={() => {}}
+          />
         </View>
       </View>
       <View style={{flexDirection: 'row', marginTop: height * 0.01}}>
@@ -85,7 +106,7 @@ const Signup = props => {
           fontWeight: 'bold',
           color: 'black',
         }}>
-        Signnup with social account
+        Signup with social account
       </Text>
       <View
         style={{
@@ -97,7 +118,7 @@ const Signup = props => {
         <Entypo name="facebook" size={scale(40)} color="blue" />
         <AntDesign name="google" size={scale(40)} color="red" />
       </View>
-    </View>
+    </ImageBackground>
   );
 };
 
@@ -144,6 +165,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     flexDirection: 'row',
+    borderRadius: scale(10),
   },
   ti: {
     width: width * 0.7,
