@@ -55,7 +55,7 @@ const HomeScreen = () => {
       category: 'Soups',
       items: [
         {
-          name: 'Vegetable Egg Rolls',
+          name: 'Shrimp Almond Ding',
           description:
             'Egg Roll, B.B.Q Pork, Crabmeat Rangoon, Beef Teriyaki Stick & Cantonese Fried Shrimp',
           singlePrice: 3.85,
