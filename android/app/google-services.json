@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "122443780819",
+    "project_id": "newchinahut-69ce9",
+    "storage_bucket": "newchinahut-69ce9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:122443780819:android:84439af36d12d2a3e23a26",
+        "android_client_info": {
+          "package_name": "com.newchinahut"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "122443780819-7gf453r9aeer0fv8tpairr3p51cjfme7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newchinahut",
+            "certificate_hash": "2b02320ada1fcc47a53d0cceb011702416a779ed"
+          }
+        },
+        {
+          "client_id": "122443780819-vf4e8026eapp68r1hlsv7t9igtati126.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXxF3iKbybzCd0oP2ISbbRc-dCkcnZyJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "122443780819-vf4e8026eapp68r1hlsv7t9igtati126.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

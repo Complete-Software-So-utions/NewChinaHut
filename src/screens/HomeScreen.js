@@ -150,7 +150,12 @@ const HomeScreen = () => {
                   }}
                   key={index}>
                   <View style={{width: width * 0.56}}>
-                    <Text style={{fontSize: scale(15), fontWeight: 'bold'}}>
+                    <Text
+                      style={{
+                        fontSize: scale(15),
+                        fontWeight: 'bold',
+                        color: '#000',
+                      }}>
                       {i.name}
                     </Text>
                     {i.description ? <Text>{i.description}</Text> : null}
@@ -310,6 +315,7 @@ const styles = StyleSheet.create({
   are: {
     fontSize: scale(20),
     fontWeight: 'bold',
+    color: '#000',
     marginTop: height * 0.05,
   },
   main: {
@@ -328,5 +334,6 @@ const styles = StyleSheet.create({
   des: {
     marginTop: height * 0.01,
     fontSize: scale(15),
+    color: '#000',
   },
 });
