@@ -4,8 +4,10 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from '../screens/Login';
 import Signup from '../screens/Signup';
+import HomeScreen from '../screens/HomeScreen';
 
 const Auth = createNativeStackNavigator();
+const Post = createNativeStackNavigator();
 
 const MainNavigator = () => {
   const Authentication = () => {
@@ -25,9 +27,22 @@ const MainNavigator = () => {
     );
   };
 
+  const PostAuth = () => {
+    return (
+      <Post.Navigator>
+        <Post.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{headerShown: false}}
+        />
+      </Post.Navigator>
+    );
+  };
+
   return (
     <NavigationContainer>
-      <Authentication />
+      {/* <Authentication /> */}
+      <PostAuth />
     </NavigationContainer>
   );
 };
