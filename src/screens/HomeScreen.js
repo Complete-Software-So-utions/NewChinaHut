@@ -15,8 +15,6 @@ import {useIsFocused} from '@react-navigation/native';
 const {width, height} = Dimensions.get('window');
 
 const HomeScreen = () => {
-  const isFocused = useIsFocused();
-  const focus = React.useRef([]);
   let categories = [
     'Appetizers',
     'Soups',
@@ -84,7 +82,7 @@ const HomeScreen = () => {
           },
         },
         {
-          name: 'Beef Teriyaki Sticks',
+          name: 'Chicken Teriyaki Sticks',
           doublePrice: {
             small: 'none',
             large: 8.35,
@@ -94,100 +92,13 @@ const HomeScreen = () => {
     },
   ];
 
-  const handleFocus = ref => {
-    const index = menu.findIndex(item => item.category === ref);
-    console.log(index);
-    focus.current.focus(index);
-  };
+  const [filterCat, setFilter] = React.useState(true);
+  const [color, setColor] = React.useState(menu[0].category);
 
-  const setRef = ref => {
-    focus.current.push(ref);
-  };
-
-  const renderItems = ({item, index}) => {
-    return (
-      <View ref={setRef}>
-        <Text>{item.category}</Text>
-        {item.items.map((i, ind) => (
-          <View
-            style={{
-              flexDirection: 'row',
-              width: width * 0.9,
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginTop: height * 0.01,
-              backgroundColor: 'white',
-              elevation: scale(5),
-              borderRadius: scale(7),
-              borderWidth: scale(1),
-              borderColor: 'lightgrey',
-              padding: width * 0.01,
-            }}
-            key={ind}>
-            <View style={{width: width * 0.56}}>
-              <Text style={{fontSize: scale(15), fontWeight: 'bold'}}>
-                {i.name}
-              </Text>
-              {i.description ? <Text>{i.description}</Text> : null}
-            </View>
-            {i.singlePrice && !i.doublePrice ? (
-              <Text>${i.singlePrice}</Text>
-            ) : i.doublePrice.small !== 'none' &&
-              i.doublePrice.large !== 'none' ? (
-              <View
-                style={{
-                  flexDirection: 'row',
-                  width: width * 0.25,
-                  justifyContent: 'space-around',
-                }}>
-                <View>
-                  <Text>Small</Text>
-                  <Text>${i.doublePrice.small}</Text>
-                </View>
-                <View>
-                  <Text>Large</Text>
-                  <Text>${i.doublePrice.large}</Text>
-                </View>
-              </View>
-            ) : i.doublePrice.small !== 'none' &&
-              i.doublePrice.large == 'none' ? (
-              <View
-                style={{
-                  flexDirection: 'row',
-                  width: width * 0.25,
-                  justifyContent: 'space-around',
-                }}>
-                <View>
-                  <Text>Small</Text>
-                  <Text>${i.doublePrice.small}</Text>
-                </View>
-                <View>
-                  <Text>Large</Text>
-                  <Text>{i.doublePrice.large}</Text>
-                </View>
-              </View>
-            ) : i.doublePrice.small == 'none' &&
-              i.doublePrice.large !== 'none' ? (
-              <View
-                style={{
-                  flexDirection: 'row',
-                  width: width * 0.25,
-                  justifyContent: 'space-around',
-                }}>
-                <View>
-                  <Text>Small</Text>
-                  <Text>{i.doublePrice.small}</Text>
-                </View>
-                <View>
-                  <Text>Large</Text>
-                  <Text>${i.doublePrice.large}</Text>
-                </View>
-              </View>
-            ) : null}
-          </View>
-        ))}
-      </View>
-    );
+  const handleFocus = itm => {
+    const arr = menu.filter(item => item.category == itm);
+    setColor(itm);
+    setFilter(arr);
   };
 
   return (
@@ -212,16 +123,170 @@ const HomeScreen = () => {
             </TouchableOpacity>
           ))}
         </ScrollView>
-        <FlatList
-          data={menu}
-          keyExtractor={(item, index) => index}
-          renderItem={renderItems}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{paddingBottom: height * 0.05}}
-          style={{
-            height: height * 0.5,
-          }}
-        />
+        {filterCat == true ? (
+          <Text>{menu[0].category}</Text>
+        ) : (
+          <Text>{filterCat[0].category}</Text>
+        )}
+        <ScrollView>
+          {filterCat == true
+            ? menu[0].items.map((i, index) => (
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    width: width * 0.9,
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    marginTop: height * 0.01,
+                    backgroundColor: 'white',
+                    elevation: scale(5),
+                    borderRadius: scale(7),
+                    borderWidth: scale(1),
+                    borderColor: 'lightgrey',
+                    padding: width * 0.01,
+                  }}
+                  key={index}>
+                  <View style={{width: width * 0.56}}>
+                    <Text style={{fontSize: scale(15), fontWeight: 'bold'}}>
+                      {i.name}
+                    </Text>
+                    {i.description ? <Text>{i.description}</Text> : null}
+                  </View>
+                  {i.singlePrice && !i.doublePrice ? (
+                    <Text>${i.singlePrice}</Text>
+                  ) : i.doublePrice.small !== 'none' &&
+                    i.doublePrice.large !== 'none' ? (
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        width: width * 0.25,
+                        justifyContent: 'space-around',
+                      }}>
+                      <View>
+                        <Text>Small</Text>
+                        <Text>${i.doublePrice.small}</Text>
+                      </View>
+                      <View>
+                        <Text>Large</Text>
+                        <Text>${i.doublePrice.large}</Text>
+                      </View>
+                    </View>
+                  ) : i.doublePrice.small !== 'none' &&
+                    i.doublePrice.large == 'none' ? (
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        width: width * 0.25,
+                        justifyContent: 'space-around',
+                      }}>
+                      <View>
+                        <Text>Small</Text>
+                        <Text>${i.doublePrice.small}</Text>
+                      </View>
+                      <View>
+                        <Text>Large</Text>
+                        <Text>{i.doublePrice.large}</Text>
+                      </View>
+                    </View>
+                  ) : i.doublePrice.small == 'none' &&
+                    i.doublePrice.large !== 'none' ? (
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        width: width * 0.25,
+                        justifyContent: 'space-around',
+                      }}>
+                      <View>
+                        <Text>Small</Text>
+                        <Text>{i.doublePrice.small}</Text>
+                      </View>
+                      <View>
+                        <Text>Large</Text>
+                        <Text>${i.doublePrice.large}</Text>
+                      </View>
+                    </View>
+                  ) : null}
+                </View>
+              ))
+            : filterCat[0].items.map((i, index) => (
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    width: width * 0.9,
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    marginTop: height * 0.01,
+                    backgroundColor: 'white',
+                    elevation: scale(5),
+                    borderRadius: scale(7),
+                    borderWidth: scale(1),
+                    borderColor: 'lightgrey',
+                    padding: width * 0.01,
+                  }}
+                  key={index}>
+                  <View style={{width: width * 0.56}}>
+                    <Text style={{fontSize: scale(15), fontWeight: 'bold'}}>
+                      {i.name}
+                    </Text>
+                    {i.description ? <Text>{i.description}</Text> : null}
+                  </View>
+                  {i.singlePrice && !i.doublePrice ? (
+                    <Text>${i.singlePrice}</Text>
+                  ) : i.doublePrice.small !== 'none' &&
+                    i.doublePrice.large !== 'none' ? (
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        width: width * 0.25,
+                        justifyContent: 'space-around',
+                      }}>
+                      <View>
+                        <Text>Small</Text>
+                        <Text>${i.doublePrice.small}</Text>
+                      </View>
+                      <View>
+                        <Text>Large</Text>
+                        <Text>${i.doublePrice.large}</Text>
+                      </View>
+                    </View>
+                  ) : i.doublePrice.small !== 'none' &&
+                    i.doublePrice.large == 'none' ? (
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        width: width * 0.25,
+                        justifyContent: 'space-around',
+                      }}>
+                      <View>
+                        <Text>Small</Text>
+                        <Text>${i.doublePrice.small}</Text>
+                      </View>
+                      <View>
+                        <Text>Large</Text>
+                        <Text>{i.doublePrice.large}</Text>
+                      </View>
+                    </View>
+                  ) : i.doublePrice.small == 'none' &&
+                    i.doublePrice.large !== 'none' ? (
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        width: width * 0.25,
+                        justifyContent: 'space-around',
+                      }}>
+                      <View>
+                        <Text>Small</Text>
+                        <Text>{i.doublePrice.small}</Text>
+                      </View>
+                      <View>
+                        <Text>Large</Text>
+                        <Text>${i.doublePrice.large}</Text>
+                      </View>
+                    </View>
+                  ) : null}
+                </View>
+              ))}
+        </ScrollView>
       </View>
     </View>
   );
