@@ -17,14 +17,14 @@ const MyTabBar = props => {
     <View style={styles.bar}>
       <TouchableOpacity style={styles.tabs}>
         <Image
-          source={require('../assets/home.png')}
+          source={require('../assets/Home.png')}
           resizeMode="contain"
           style={{width: scale(25), height: scale(25)}}
         />
       </TouchableOpacity>
       <TouchableOpacity style={styles.tabs}>
         <Image
-          source={require('../assets/cart.png')}
+          source={require('../assets/Cart.png')}
           resizeMode="contain"
           style={{width: scale(25), height: scale(25)}}
         />
