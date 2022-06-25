@@ -68,7 +68,7 @@ const Login = props => {
       <Text style={styles.for}>Forgot your password?</Text>
       <TouchableOpacity
         style={styles.login}
-        onPress={() => props.navigation.navigate('Home')}>
+        onPress={() => props.navigation.navigate('HomePage')}>
         <Text style={styles.text}>Login</Text>
       </TouchableOpacity>
       <Text

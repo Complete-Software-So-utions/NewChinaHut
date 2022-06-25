@@ -2,12 +2,16 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import MyTabBar from './MyTabBar';
 import Login from '../screens/Login';
 import Signup from '../screens/Signup';
 import HomeScreen from '../screens/HomeScreen';
+import Profile from '../screens/Profile';
 
 const Auth = createNativeStackNavigator();
 const Main = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const MainNavigator = () => {
   const Authentication = () => {
@@ -27,6 +31,25 @@ const MainNavigator = () => {
     );
   };
 
+  function MyTabs() {
+    return (
+      <Tab.Navigator
+        initialRouteName="Home"
+        tabBar={props => <MyTabBar {...props} />}>
+        <Tab.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{headerShown: false}}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={Profile}
+          options={{headerShown: false}}
+        />
+      </Tab.Navigator>
+    );
+  }
+
   const MainStack = () => {
     return (
       <Main.Navigator>
@@ -36,8 +59,8 @@ const MainNavigator = () => {
           options={{headerShown: false}}
         />
         <Main.Screen
-          name="Home"
-          component={HomeScreen}
+          name="HomePage"
+          component={MyTabs}
           options={{headerShown: false}}
         />
       </Main.Navigator>

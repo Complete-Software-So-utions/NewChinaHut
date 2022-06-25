@@ -14,9 +14,11 @@ const {width, height} = Dimensions.get('window');
 
 const HomeScreen = () => {
   const [categories, setCategories] = React.useState([
-    {name: 'Appetizers', color: true},
-    {name: 'Soups', color: false},
+    {name: 'Appetizers', highlight: true},
+    {name: 'Soups', highlight: false},
   ]);
+
+  const [filterCat, setFilter] = React.useState([]);
 
   let menu = [
     {
@@ -85,17 +87,15 @@ const HomeScreen = () => {
     },
   ];
 
-  const [filterCat, setFilter] = React.useState(true);
-
   const handleFocus = itm => {
     const arr = menu.filter(item => item.category == itm);
     setFilter(arr);
     let cat = [...categories];
     for (let x = 0; x < cat.length; x++) {
-      if (cat[x].color == true) {
-        cat[x] = {...cat[x], color: false};
-      } else if (cat[x].color == false) {
-        cat[x] = {...cat[x], color: true};
+      if (cat[x].highlight == true) {
+        cat[x] = {...cat[x], highlight: false};
+      } else if (cat[x].highlight == false) {
+        cat[x] = {...cat[x], highlight: true};
       }
     }
     setCategories(cat);
@@ -119,20 +119,28 @@ const HomeScreen = () => {
               onPress={() => handleFocus(item.name)}
               style={[
                 styles.zontal,
-                {backgroundColor: item.color == true ? 'red' : 'white'},
+                {
+                  backgroundColor: item.highlight == true ? 'maroon' : 'white',
+                },
               ]}
               key={index}>
-              <Text style={styles.cat}>{item.name}</Text>
+              <Text
+                style={[
+                  styles.cat,
+                  {color: item.highlight == true ? 'white' : 'black'},
+                ]}>
+                {item.name}
+              </Text>
             </TouchableOpacity>
           ))}
         </ScrollView>
-        {filterCat == true ? (
+        {filterCat.length < 1 ? (
           <Text>{menu[0].category}</Text>
         ) : (
           <Text>{filterCat[0].category}</Text>
         )}
         <ScrollView>
-          {filterCat == true
+          {filterCat.length < 1
             ? menu[0].items.map((i, index) => (
                 <View
                   style={{
@@ -146,22 +154,21 @@ const HomeScreen = () => {
                     borderRadius: scale(7),
                     borderWidth: scale(1),
                     borderColor: 'lightgrey',
-                    padding: width * 0.01,
+                    padding: width * 0.04,
                   }}
                   key={index}>
-                  <View style={{width: width * 0.56}}>
-                    <Text
-                      style={{
-                        fontSize: scale(15),
-                        fontWeight: 'bold',
-                        color: '#000',
-                      }}>
-                      {i.name}
-                    </Text>
-                    {i.description ? <Text>{i.description}</Text> : null}
-                  </View>
+                  <Text
+                    style={{
+                      fontSize: scale(15),
+                      fontWeight: 'bold',
+                      color: '#000',
+                    }}>
+                    {i.name}
+                  </Text>
                   {i.singlePrice && !i.doublePrice ? (
-                    <Text>${i.singlePrice}</Text>
+                    <Text style={{marginRight: width * 0.02}}>
+                      ${i.singlePrice}
+                    </Text>
                   ) : i.doublePrice.small !== 'none' &&
                     i.doublePrice.large !== 'none' ? (
                     <View
@@ -169,12 +176,13 @@ const HomeScreen = () => {
                         flexDirection: 'row',
                         width: width * 0.25,
                         justifyContent: 'space-around',
+                        alignItems: 'center',
                       }}>
-                      <View>
+                      <View style={{alignItems: 'center'}}>
                         <Text>Small</Text>
                         <Text>${i.doublePrice.small}</Text>
                       </View>
-                      <View>
+                      <View style={{alignItems: 'center'}}>
                         <Text>Large</Text>
                         <Text>${i.doublePrice.large}</Text>
                       </View>
@@ -186,12 +194,13 @@ const HomeScreen = () => {
                         flexDirection: 'row',
                         width: width * 0.25,
                         justifyContent: 'space-around',
+                        alignItems: 'center',
                       }}>
-                      <View>
+                      <View style={{alignItems: 'center'}}>
                         <Text>Small</Text>
                         <Text>${i.doublePrice.small}</Text>
                       </View>
-                      <View>
+                      <View style={{alignItems: 'center'}}>
                         <Text>Large</Text>
                         <Text>{i.doublePrice.large}</Text>
                       </View>
@@ -203,12 +212,13 @@ const HomeScreen = () => {
                         flexDirection: 'row',
                         width: width * 0.25,
                         justifyContent: 'space-around',
+                        alignItems: 'center',
                       }}>
-                      <View>
+                      <View style={{alignItems: 'center'}}>
                         <Text>Small</Text>
                         <Text>{i.doublePrice.small}</Text>
                       </View>
-                      <View>
+                      <View style={{alignItems: 'center'}}>
                         <Text>Large</Text>
                         <Text>${i.doublePrice.large}</Text>
                       </View>
@@ -229,17 +239,16 @@ const HomeScreen = () => {
                     borderRadius: scale(7),
                     borderWidth: scale(1),
                     borderColor: 'lightgrey',
-                    padding: width * 0.01,
+                    padding: width * 0.04,
                   }}
                   key={index}>
-                  <View style={{width: width * 0.56}}>
-                    <Text style={{fontSize: scale(15), fontWeight: 'bold'}}>
-                      {i.name}
-                    </Text>
-                    {i.description ? <Text>{i.description}</Text> : null}
-                  </View>
+                  <Text style={{fontSize: scale(15), fontWeight: 'bold'}}>
+                    {i.name}
+                  </Text>
                   {i.singlePrice && !i.doublePrice ? (
-                    <Text>${i.singlePrice}</Text>
+                    <Text style={{marginRight: width * 0.02}}>
+                      ${i.singlePrice}
+                    </Text>
                   ) : i.doublePrice.small !== 'none' &&
                     i.doublePrice.large !== 'none' ? (
                     <View
@@ -247,12 +256,13 @@ const HomeScreen = () => {
                         flexDirection: 'row',
                         width: width * 0.25,
                         justifyContent: 'space-around',
+                        alignItems: 'center',
                       }}>
-                      <View>
+                      <View style={{alignItems: 'center'}}>
                         <Text>Small</Text>
                         <Text>${i.doublePrice.small}</Text>
                       </View>
-                      <View>
+                      <View style={{alignItems: 'center'}}>
                         <Text>Large</Text>
                         <Text>${i.doublePrice.large}</Text>
                       </View>
@@ -264,12 +274,13 @@ const HomeScreen = () => {
                         flexDirection: 'row',
                         width: width * 0.25,
                         justifyContent: 'space-around',
+                        alignItems: 'center',
                       }}>
-                      <View>
+                      <View style={{alignItems: 'center'}}>
                         <Text>Small</Text>
                         <Text>${i.doublePrice.small}</Text>
                       </View>
-                      <View>
+                      <View style={{alignItems: 'center'}}>
                         <Text>Large</Text>
                         <Text>{i.doublePrice.large}</Text>
                       </View>
@@ -281,12 +292,13 @@ const HomeScreen = () => {
                         flexDirection: 'row',
                         width: width * 0.25,
                         justifyContent: 'space-around',
+                        alignItems: 'center',
                       }}>
-                      <View>
+                      <View style={{alignItems: 'center'}}>
                         <Text>Small</Text>
                         <Text>{i.doublePrice.small}</Text>
                       </View>
-                      <View>
+                      <View style={{alignItems: 'center'}}>
                         <Text>Large</Text>
                         <Text>${i.doublePrice.large}</Text>
                       </View>
@@ -326,10 +338,11 @@ const styles = StyleSheet.create({
     fontSize: scale(15),
   },
   zontal: {
-    width: width * 0.23,
-    height: height * 0.06,
+    paddingHorizontal: width * 0.05,
+    paddingVertical: height * 0.01,
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: scale(10),
   },
   des: {
     marginTop: height * 0.01,
