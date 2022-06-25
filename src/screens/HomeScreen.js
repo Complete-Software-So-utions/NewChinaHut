@@ -6,24 +6,17 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-  FlatList,
 } from 'react-native';
 import React from 'react';
 import {scale} from 'react-native-size-matters';
-import {useIsFocused} from '@react-navigation/native';
 
 const {width, height} = Dimensions.get('window');
 
 const HomeScreen = () => {
-  let categories = [
-    'Appetizers',
-    'Soups',
-    'Seafood',
-    'Beef',
-    'Poultry',
-    'Vegetables',
-    'Healthy',
-  ];
+  const [categories, setCategories] = React.useState([
+    {name: 'Appetizers', color: true},
+    {name: 'Soups', color: false},
+  ]);
 
   let menu = [
     {
@@ -68,14 +61,14 @@ const HomeScreen = () => {
           singlePrice: 3.85,
         },
         {
-          name: 'Pot Stickers',
+          name: 'Chicken Noodle Soup',
           doublePrice: {
             small: 3.45,
             large: 5.25,
           },
         },
         {
-          name: 'Cantonese Fried Chips',
+          name: 'Chicken Sizzling Rice',
           doublePrice: {
             small: 6.85,
             large: 'none',
@@ -93,12 +86,19 @@ const HomeScreen = () => {
   ];
 
   const [filterCat, setFilter] = React.useState(true);
-  const [color, setColor] = React.useState(menu[0].category);
 
   const handleFocus = itm => {
     const arr = menu.filter(item => item.category == itm);
-    setColor(itm);
     setFilter(arr);
+    let cat = [...categories];
+    for (let x = 0; x < cat.length; x++) {
+      if (cat[x].color == true) {
+        cat[x] = {...cat[x], color: false};
+      } else if (cat[x].color == false) {
+        cat[x] = {...cat[x], color: true};
+      }
+    }
+    setCategories(cat);
   };
 
   return (
@@ -116,10 +116,13 @@ const HomeScreen = () => {
           horizontal={true}>
           {categories.map((item, index) => (
             <TouchableOpacity
-              onPress={() => handleFocus(item)}
-              style={styles.zontal}
+              onPress={() => handleFocus(item.name)}
+              style={[
+                styles.zontal,
+                {backgroundColor: item.color == true ? 'red' : 'white'},
+              ]}
               key={index}>
-              <Text style={styles.cat}>{item}</Text>
+              <Text style={styles.cat}>{item.name}</Text>
             </TouchableOpacity>
           ))}
         </ScrollView>
