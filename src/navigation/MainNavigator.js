@@ -7,7 +7,7 @@ import Signup from '../screens/Signup';
 import HomeScreen from '../screens/HomeScreen';
 
 const Auth = createNativeStackNavigator();
-const Post = createNativeStackNavigator();
+const Main = createNativeStackNavigator();
 
 const MainNavigator = () => {
   const Authentication = () => {
@@ -27,22 +27,26 @@ const MainNavigator = () => {
     );
   };
 
-  const PostAuth = () => {
+  const MainStack = () => {
     return (
-      <Post.Navigator>
-        <Post.Screen
+      <Main.Navigator>
+        <Main.Screen
+          name="auth"
+          component={Authentication}
+          options={{headerShown: false}}
+        />
+        <Main.Screen
           name="Home"
           component={HomeScreen}
           options={{headerShown: false}}
         />
-      </Post.Navigator>
+      </Main.Navigator>
     );
   };
 
   return (
     <NavigationContainer>
-      {/* <Authentication /> */}
-      <PostAuth />
+      <MainStack />
     </NavigationContainer>
   );
 };

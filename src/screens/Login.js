@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {scale} from 'react-native-size-matters';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -16,6 +16,9 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 const {width, height} = Dimensions.get('window');
 
 const Login = props => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <ImageBackground style={styles.bg}>
       <Image
@@ -36,7 +39,8 @@ const Login = props => {
           <TextInput
             style={styles.ti}
             placeholder="Email"
-            onChangeText={() => {}}
+            placeholderTextColor="#888"
+            onChangeText={text => setEmail(text)}
           />
         </View>
         <View style={styles.con}>
@@ -48,12 +52,13 @@ const Login = props => {
           <TextInput
             style={styles.ti}
             placeholder="Password"
-            onChangeText={() => {}}
+            placeholderTextColor="#888"
+            onChangeText={text => setPassword(text)}
           />
         </View>
       </View>
-      <View style={{flexDirection: 'row', marginTop: height * 0.01}}>
-        <Text style={styles.dont}>Don't Have an Account?</Text>
+      <View style={{flexDirection: 'row', marginTop: height * 0.03}}>
+        <Text style={styles.dont}>Don't Have an Account? </Text>
         <Text
           style={styles.su}
           onPress={() => props.navigation.navigate('Signup')}>
@@ -61,12 +66,14 @@ const Login = props => {
         </Text>
       </View>
       <Text style={styles.for}>Forgot your password?</Text>
-      <TouchableOpacity style={styles.login}>
+      <TouchableOpacity
+        style={styles.login}
+        onPress={() => props.navigation.navigate('Home')}>
         <Text style={styles.text}>Login</Text>
       </TouchableOpacity>
       <Text
         style={{
-          marginTop: height * 0.03,
+          marginTop: height * 0.06,
           fontSize: scale(15),
           fontWeight: 'bold',
           color: 'black',
@@ -80,7 +87,7 @@ const Login = props => {
           width: width * 0.25,
           justifyContent: 'space-between',
         }}>
-        <Entypo name="facebook" size={scale(40)} color="blue" />
+        <Entypo name="facebook" size={scale(38)} color="blue" />
         <AntDesign name="google" size={scale(40)} color="red" />
       </View>
     </ImageBackground>
@@ -100,7 +107,7 @@ const styles = StyleSheet.create({
     height: height * 0.1,
   },
   log: {
-    marginTop: height * 0.02,
+    marginTop: height * 0.04,
     color: 'black',
     fontSize: scale(25),
     fontWeight: 'bold',
@@ -130,14 +137,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     flexDirection: 'row',
+    paddingLeft: 15,
     borderRadius: scale(10),
   },
   ti: {
     width: width * 0.7,
     height: height * 0.05,
+    fontSize: 16,
+    marginLeft: 10,
   },
   for: {
-    marginTop: height * 0.02,
+    marginTop: height * 0.04,
     color: 'black',
     fontSize: scale(15),
     fontWeight: 'bold',
