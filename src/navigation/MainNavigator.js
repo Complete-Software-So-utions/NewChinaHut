@@ -8,6 +8,8 @@ import Login from '../screens/Login';
 import Signup from '../screens/Signup';
 import HomeScreen from '../screens/HomeScreen';
 import Profile from '../screens/Profile';
+import Cart from '../screens/Cart';
+import Notifications from '../screens/Notifications';
 
 const Auth = createNativeStackNavigator();
 const Main = createNativeStackNavigator();
@@ -39,6 +41,16 @@ const MainNavigator = () => {
         <Tab.Screen
           name="Home"
           component={HomeScreen}
+          options={{headerShown: false}}
+        />
+        <Tab.Screen
+          name="Cart"
+          component={Cart}
+          options={{headerShown: false}}
+        />
+        <Tab.Screen
+          name="Notifications"
+          component={Notifications}
           options={{headerShown: false}}
         />
         <Tab.Screen

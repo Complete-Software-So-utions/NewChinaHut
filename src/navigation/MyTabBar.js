@@ -8,40 +8,88 @@ import {
 } from 'react-native';
 import React from 'react';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {scale} from 'react-native-size-matters';
-
 const {width, height} = Dimensions.get('window');
 
-const MyTabBar = props => {
+const ICONS = [
+  {
+    name: 'home',
+  },
+  {
+    name: 'cart-outline',
+  },
+  {
+    name: 'bell',
+  },
+  {
+    name: 'male',
+  },
+];
+
+function MyTabBar({state, descriptors, navigation}) {
   return (
     <View style={styles.bar}>
-      <TouchableOpacity style={styles.tabs}>
-        <Image
-          source={require('../assets/Home.png')}
-          resizeMode="contain"
-          style={{width: scale(25), height: scale(25)}}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.tabs}>
-        <Image
-          source={require('../assets/Cart.png')}
-          resizeMode="contain"
-          style={{width: scale(25), height: scale(25)}}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.tabs}>
-        <Fontisto name={'bell'} color={'lightgrey'} size={scale(25)} />
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.tabs}>
-        <Image
-          source={require('../assets/myacc.png')}
-          resizeMode="contain"
-          style={{width: scale(25), height: scale(25)}}
-        />
-      </TouchableOpacity>
+      {state.routes.map((route, index) => {
+        const {options} = descriptors[route.key];
+        const label =
+          options.tabBarLabel !== undefined
+            ? options.tabBarLabel
+            : options.title !== undefined
+            ? options.title
+            : route.name;
+
+        const isFocused = state.index === index;
+
+        const onPress = () => {
+          const event = navigation.emit({
+            type: 'tabPress',
+            target: route.key,
+          });
+
+          if (!isFocused && !event.defaultPrevented) {
+            navigation.navigate(route.name);
+          }
+        };
+
+        const onLongPress = () => {
+          navigation.emit({
+            type: 'tabLongPress',
+            target: route.key,
+          });
+        };
+        return (
+          <View>
+            <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityState={isFocused ? {selected: true} : {}}
+              accessibilityLabel={options.tabBarAccessibilityLabel}
+              testID={options.tabBarTestID}
+              onPress={onPress}
+              onLongPress={onLongPress}
+              style={styles.tabs}>
+              <View style={{width: scale(25), height: scale(25)}}>
+                {ICONS[index].name == 'cart-outline' ? (
+                  <MaterialCommunityIcons
+                    name={ICONS[index].name}
+                    color={isFocused ? '#790102' : 'lightgrey'}
+                    size={scale(27)}
+                  />
+                ) : (
+                  <Fontisto
+                    name={ICONS[index].name}
+                    color={isFocused ? '#790102' : 'lightgrey'}
+                    size={scale(25)}
+                  />
+                )}
+              </View>
+            </TouchableOpacity>
+          </View>
+        );
+      })}
     </View>
   );
-};
+}
 
 export default MyTabBar;
 

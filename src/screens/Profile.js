@@ -5,6 +5,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  ScrollView,
 } from 'react-native';
 import React from 'react';
 import {scale} from 'react-native-size-matters';
