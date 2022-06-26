@@ -343,11 +343,15 @@ const HomeScreen = () => {
                 style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
                 <View style={styles.tab}>
                   <Text style={styles.text}>Small</Text>
-                  <Text style={styles.text}>${modalDat.doublePrice.small}</Text>
+                  <Text style={styles.text}>
+                    ${modalDat?.doublePrice?.small}
+                  </Text>
                 </View>
                 <View style={styles.tab}>
                   <Text style={styles.text}>Large</Text>
-                  <Text style={styles.text}>${modalDat.doublePrice.large}</Text>
+                  <Text style={styles.text}>
+                    ${modalDat?.doublePrice?.large}
+                  </Text>
                 </View>
               </View>
             ) : (
