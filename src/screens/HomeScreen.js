@@ -6,8 +6,6 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-  TouchableWithoutFeedback,
-  Pressable,
 } from 'react-native';
 import React from 'react';
 import {scale} from 'react-native-size-matters';
@@ -115,7 +113,7 @@ const HomeScreen = () => {
 
   return (
     <>
-      <View style={styles.bg}>
+      <ImageBackground style={styles.bg}>
         <Image
           source={require('../assets/image33.jpg')}
           style={styles.header}
@@ -327,7 +325,7 @@ const HomeScreen = () => {
                 ))}
           </ScrollView>
         </View>
-      </View>
+      </ImageBackground>
       <Modal isVisible={isModalVisible}>
         <View style={styles.modal}>
           <View style={styles.popup}>

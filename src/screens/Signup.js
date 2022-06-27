@@ -17,10 +17,12 @@ const {width, height} = Dimensions.get('window');
 
 const Signup = props => {
   return (
-    <ImageBackground style={styles.bg}>
+    <ImageBackground
+      source={require('../assets/loginbg.jpg')}
+      style={styles.bg}>
       <Image
         source={require('../assets/image33.jpg')}
-        resizeMode="contain"
+        resizeMode="stretch"
         style={styles.header}
       />
       <Text style={styles.log}>Signup</Text>
