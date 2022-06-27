@@ -6,6 +6,7 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
 import React from 'react';
 import {scale} from 'react-native-size-matters';
@@ -113,7 +114,10 @@ const HomeScreen = () => {
 
   return (
     <>
-      <ImageBackground style={styles.bg}>
+      <ImageBackground
+        source={require('../assets/homebg.png')}
+        resizeMode="stretch"
+        style={styles.bg}>
         <Image
           source={require('../assets/image33.jpg')}
           style={styles.header}
@@ -433,6 +437,7 @@ const styles = StyleSheet.create({
   header: {
     width: width,
     height: height * 0.1,
+    marginTop: height * 0.02,
   },
   are: {
     fontSize: scale(20),

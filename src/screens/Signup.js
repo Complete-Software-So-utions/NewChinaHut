@@ -19,6 +19,7 @@ const Signup = props => {
   return (
     <ImageBackground
       source={require('../assets/loginbg.jpg')}
+      resizeMode="stretch"
       style={styles.bg}>
       <Image
         source={require('../assets/image33.jpg')}
@@ -135,6 +136,7 @@ const styles = StyleSheet.create({
   header: {
     width: width,
     height: height * 0.1,
+    marginTop: height * 0.02,
   },
   log: {
     marginTop: height * 0.02,

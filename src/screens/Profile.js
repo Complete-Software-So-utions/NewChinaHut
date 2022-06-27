@@ -6,77 +6,102 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  ImageBackground,
 } from 'react-native';
 import React from 'react';
 import {scale} from 'react-native-size-matters';
 import Foundation from 'react-native-vector-icons/Foundation';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const {width, height} = Dimensions.get('window');
 
 const Profile = () => {
   return (
-    <View style={styles.bg}>
-      <Text>Profile</Text>
-      <ScrollView>
-        <Text>Hello John</Text>
-        <View>
+    <ImageBackground
+      source={require('../assets/loginbg.jpg')}
+      resizeMode="stretch"
+      style={styles.bg}>
+      <Text
+        style={{
+          fontWeight: 'bold',
+          fontSize: scale(30),
+          color: 'black',
+          marginTop: height * 0.02,
+        }}>
+        Profile
+      </Text>
+      <Text
+        style={{
+          fontSize: scale(25),
+          color: 'black',
+          marginTop: height * 0.02,
+        }}>
+        Hello John
+      </Text>
+      <ScrollView style={{marginTop: height * 0.04}}>
+        <View style={styles.options}>
           <Image
-            source={require('../assets/myacc.png')}
+            source={require('../assets/user.png')}
             resizeMode="contain"
             style={styles.img}
           />
-          <Text>My Account</Text>
+          <Text style={styles.font}>My Account</Text>
         </View>
-        <View>
+        <View style={styles.options}>
           <Image
             source={require('../assets/myorders.png')}
-            resizeMode="contain"
+            resizeMode="stretch"
+            style={styles.img}
           />
-          <Text>My Orders</Text>
+          <Text style={styles.font}>My Orders</Text>
         </View>
-        <View>
-          <Foundation name="dollar-bill" size={scale(15)} color="maroon`" />
-          <Text>Payment Options</Text>
+        <View style={styles.options}>
+          <Foundation name="dollar-bill" size={scale(25)} color="maroon" />
+          <Text style={styles.font}>Payment Options</Text>
         </View>
-        <View>
+        <View style={styles.options}>
           <MaterialIcons
             name="delivery-dining"
-            size={scale(15)}
+            size={scale(25)}
             color="maroon"
           />
-          <Text>Delivery Options</Text>
+          <Text style={styles.font}>Delivery Options</Text>
         </View>
-        <View>
+        <View style={styles.options}>
           <Image
             source={require('../assets/support.png')}
             resizeMode="contain"
+            style={styles.img}
           />
-          <Text>Support</Text>
+          <Text style={styles.font}>Support</Text>
         </View>
-        <View>
+        <View style={styles.options}>
           <Image
             source={require('../assets/aboutus.png')}
-            resizeMode="contain"
+            resizeMode="stretch"
+            style={styles.img}
           />
-          <Text>About Us</Text>
+          <Text style={styles.font}>About Us</Text>
         </View>
-        <View>
+        <View style={styles.options}>
           <Image
             source={require('../assets/contactus.png')}
-            resizeMode="contain"
+            resizeMode="stretch"
+            style={styles.img}
           />
-          <Text>Contact Us</Text>
+          <Text style={styles.font}>Contact Us</Text>
         </View>
-        <View>
-          <Image
-            source={require('../assets/contactus.png')}
-            resizeMode="contain"
+        <View style={styles.options}>
+          <MaterialCommunityIcons
+            name="logout"
+            size={scale(25)}
+            color="maroon"
           />
-          <Text>Logout</Text>
+          <Text style={styles.font}>Logout</Text>
         </View>
       </ScrollView>
-    </View>
+    </ImageBackground>
   );
 };
 
@@ -90,7 +115,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   img: {
-    width: scale(15),
-    height: scale(15),
+    width: scale(20),
+    height: scale(20),
+  },
+  options: {
+    flexDirection: 'row',
+    width: width * 0.8,
+    alignItems: 'center',
+    height: height * 0.05,
+    paddingLeft: width * 0.03,
+    borderWidth: scale(1),
+    borderColor: 'maroon',
+    marginBottom: width * 0.04,
+    borderRadius: scale(5),
+  },
+  font: {
+    fontSize: scale(15),
+    color: 'darkgrey',
+    marginTop: height * 0.02,
+    height: height * 0.05,
+    marginLeft: width * 0.05,
   },
 });
