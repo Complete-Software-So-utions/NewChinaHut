@@ -7,17 +7,73 @@ import {
   TextInput,
   TouchableOpacity,
   ImageBackground,
+  ActivityIndicator,
+  Alert,
 } from 'react-native';
 import React, {useState} from 'react';
 import {scale} from 'react-native-size-matters';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import CreateUpdateMethod from '../networkcalls/CreateUpdateMethod';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {CommonActions} from '@react-navigation/native';
 
 const {width, height} = Dimensions.get('window');
 
 const Login = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const validations = () => {
+    if (email == '') {
+      alert('Email is required!');
+      return false;
+    }
+    if (emailRegex.test(email) == false) {
+      alert('Please enter the correct email!');
+      return false;
+    }
+    if (password == '') {
+      alert('Password is required!');
+      return false;
+    }
+    return true;
+  };
+
+  //Sign in API
+  const SignInMethod = async () => {
+    try {
+      if (validations()) {
+        setIsLoading(true);
+        const response = await CreateUpdateMethod(
+          {
+            email,
+            password,
+          },
+          'api/auth/login',
+          'PATCH',
+        );
+        console.log('response => ', response);
+        if (response.data) {
+          setIsLoading(false);
+          saveData(response);
+          props.navigation.dispatch(
+            CommonActions.reset({routes: [{name: 'HomePage'}]}),
+          );
+        }
+        setIsLoading(false);
+      }
+    } catch (err) {
+      console.log('error ', err);
+    }
+  };
+
+  //store the data in local storage
+  const saveData = async data => {
+    await AsyncStorage.setItem('userData', JSON.stringify(data));
+  };
 
   return (
     <ImageBackground
@@ -69,10 +125,12 @@ const Login = props => {
         </Text>
       </View>
       <Text style={styles.for}>Forgot your password?</Text>
-      <TouchableOpacity
-        style={styles.login}
-        onPress={() => props.navigation.navigate('HomePage')}>
-        <Text style={styles.text}>Login</Text>
+      <TouchableOpacity style={styles.login} onPress={SignInMethod}>
+        {isLoading ? (
+          <ActivityIndicator size={36} color="#fff" />
+        ) : (
+          <Text style={styles.text}>Login</Text>
+        )}
       </TouchableOpacity>
       <Text
         style={{
@@ -88,9 +146,8 @@ const Login = props => {
           flexDirection: 'row',
           marginTop: height * 0.02,
           width: width * 0.25,
-          justifyContent: 'space-between',
+          justifyContent: 'center',
         }}>
-        <Entypo name="facebook" size={scale(38)} color="blue" />
         <AntDesign name="google" size={scale(40)} color="red" />
       </View>
     </ImageBackground>
@@ -148,6 +205,7 @@ const styles = StyleSheet.create({
     width: width * 0.7,
     height: height * 0.05,
     fontSize: 16,
+    color: '#000',
     marginLeft: 10,
   },
   for: {
