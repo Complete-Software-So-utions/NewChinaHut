@@ -145,10 +145,12 @@ const Login = props => {
         style={{
           flexDirection: 'row',
           marginTop: height * 0.02,
-          width: width * 0.25,
-          justifyContent: 'center',
         }}>
-        <AntDesign name="google" size={scale(40)} color="red" />
+        <Image
+          source={require('../assets/google.png')}
+          resizeMode="contain"
+          style={{width: width * 0.2, height: height * 0.05}}
+        />
       </View>
     </ImageBackground>
   );
