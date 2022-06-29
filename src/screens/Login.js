@@ -134,7 +134,7 @@ const Login = props => {
       </TouchableOpacity>
       <Text
         style={{
-          marginTop: height * 0.06,
+          marginTop: height * 0.03,
           fontSize: scale(15),
           fontWeight: 'bold',
           color: 'black',

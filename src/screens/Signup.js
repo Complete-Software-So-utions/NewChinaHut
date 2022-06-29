@@ -126,7 +126,6 @@ const Signup = props => {
           style={{
             marginTop: height * 0.01,
             fontSize: scale(15),
-            fontWeight: 'bold',
             color: 'black',
           }}>
           Signup with social account
