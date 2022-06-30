@@ -125,7 +125,9 @@ const Login = props => {
         </Text>
       </View>
       <Text style={styles.for}>Forgot your password?</Text>
-      <TouchableOpacity style={styles.login} onPress={SignInMethod}>
+      <TouchableOpacity
+        style={styles.login}
+        onPress={() => props.navigation.navigate('HomePage')}>
         {isLoading ? (
           <ActivityIndicator size={36} color="#fff" />
         ) : (
