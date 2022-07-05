@@ -10,6 +10,7 @@ import HomeScreen from '../screens/HomeScreen';
 import Profile from '../screens/Profile';
 import Cart from '../screens/Cart';
 import Notifications from '../screens/Notifications';
+import Address from '../screens/Address';
 
 const Auth = createNativeStackNavigator();
 const Main = createNativeStackNavigator();
@@ -33,6 +34,23 @@ const MainNavigator = () => {
     );
   };
 
+  const CartStack = () => {
+    return (
+      <Auth.Navigator initialRouteName="cart">
+        <Auth.Screen
+          name="cart"
+          component={Cart}
+          options={{headerShown: false}}
+        />
+        <Auth.Screen
+          name="Address"
+          component={Address}
+          options={{headerShown: false}}
+        />
+      </Auth.Navigator>
+    );
+  };
+
   function MyTabs() {
     return (
       <Tab.Navigator
@@ -45,7 +63,7 @@ const MainNavigator = () => {
         />
         <Tab.Screen
           name="Cart"
-          component={Cart}
+          component={CartStack}
           options={{headerShown: false}}
         />
         <Tab.Screen

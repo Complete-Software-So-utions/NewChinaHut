@@ -111,6 +111,7 @@ const Login = props => {
           <TextInput
             style={styles.ti}
             placeholder="Password"
+            secureTextEntry={true}
             placeholderTextColor="#888"
             onChangeText={text => setPassword(text)}
           />
@@ -125,9 +126,7 @@ const Login = props => {
         </Text>
       </View>
       <Text style={styles.for}>Forgot your password?</Text>
-      <TouchableOpacity
-        style={styles.login}
-        onPress={() => props.navigation.navigate('HomePage')}>
+      <TouchableOpacity style={styles.login} onPress={SignInMethod}>
         {isLoading ? (
           <ActivityIndicator size={36} color="#fff" />
         ) : (
