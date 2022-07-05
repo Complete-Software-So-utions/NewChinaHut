@@ -7,11 +7,13 @@ import {
   TextInput,
   TouchableOpacity,
   ImageBackground,
+  ScrollView,
 } from 'react-native';
 import React from 'react';
 import {scale} from 'react-native-size-matters';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const {width, height} = Dimensions.get('window');
 
@@ -26,101 +28,120 @@ const Signup = props => {
         resizeMode="stretch"
         style={styles.header}
       />
-      <Text style={styles.log}>Signup</Text>
-      <Text style={styles.welcome}>Welcome to</Text>
-      <Text style={styles.nch}>New China Hut</Text>
-      <View style={{marginTop: height * 0.02}}>
-        <View style={styles.con}>
-          <Image
-            source={require('../assets/user.png')}
-            resizeMode="contain"
-            style={styles.icon}
-          />
-          <TextInput
-            style={styles.ti}
-            placeholder="First Name"
-            onChangeText={() => {}}
-          />
+      <ScrollView
+        style={{width: width}}
+        contentContainerStyle={{
+          alignItems: 'center',
+          paddingBottom: height * 0.05,
+        }}>
+        <Text style={styles.log}>Signup</Text>
+        <Text style={styles.welcome}>Welcome to</Text>
+        <Text style={styles.nch}>New China Hut</Text>
+        <View style={{marginTop: height * 0.02}}>
+          <View style={styles.con}>
+            <Image
+              source={require('../assets/user.png')}
+              resizeMode="contain"
+              style={styles.icon}
+            />
+            <TextInput
+              style={styles.ti}
+              placeholder="First Name"
+              onChangeText={() => {}}
+            />
+          </View>
+          <View style={styles.con}>
+            <Image
+              source={require('../assets/user.png')}
+              resizeMode="contain"
+              style={styles.icon}
+            />
+            <TextInput
+              style={styles.ti}
+              placeholder="Last Name"
+              onChangeText={() => {}}
+            />
+          </View>
+          <View style={styles.con}>
+            <Image
+              source={require('../assets/email.png')}
+              resizeMode="contain"
+              style={styles.icon}
+            />
+            <TextInput
+              style={styles.ti}
+              placeholder="Email"
+              onChangeText={() => {}}
+            />
+          </View>
+          <View style={styles.con}>
+            <MaterialCommunityIcons
+              name="cellphone"
+              size={scale(20)}
+              color="maroon"
+            />
+            <TextInput
+              style={styles.ti}
+              placeholder="Phone Number"
+              onChangeText={() => {}}
+            />
+          </View>
+          <View style={styles.con}>
+            <Image
+              source={require('../assets/pass.png')}
+              resizeMode="contain"
+              style={styles.icon}
+            />
+            <TextInput
+              style={styles.ti}
+              placeholder="Password"
+              onChangeText={() => {}}
+            />
+          </View>
+          <View style={styles.con}>
+            <Image
+              source={require('../assets/pass.png')}
+              resizeMode="contain"
+              style={styles.icon}
+            />
+            <TextInput
+              style={styles.ti}
+              placeholder="Confirm Password"
+              onChangeText={() => {}}
+            />
+          </View>
         </View>
-        <View style={styles.con}>
-          <Image
-            source={require('../assets/user.png')}
-            resizeMode="contain"
-            style={styles.icon}
-          />
-          <TextInput
-            style={styles.ti}
-            placeholder="Last Name"
-            onChangeText={() => {}}
-          />
+        <View style={{flexDirection: 'row', marginTop: height * 0.01}}>
+          <Text style={styles.dont}>Already Have an Account?</Text>
+          <Text
+            style={styles.su}
+            onPress={() => props.navigation.navigate('Login')}>
+            Login
+          </Text>
         </View>
-        <View style={styles.con}>
-          <Image
-            source={require('../assets/email.png')}
-            resizeMode="contain"
-            style={styles.icon}
-          />
-          <TextInput
-            style={styles.ti}
-            placeholder="Email"
-            onChangeText={() => {}}
-          />
-        </View>
-        <View style={styles.con}>
-          <Image
-            source={require('../assets/pass.png')}
-            resizeMode="contain"
-            style={styles.icon}
-          />
-          <TextInput
-            style={styles.ti}
-            placeholder="Password"
-            onChangeText={() => {}}
-          />
-        </View>
-        <View style={styles.con}>
-          <Image
-            source={require('../assets/pass.png')}
-            resizeMode="contain"
-            style={styles.icon}
-          />
-          <TextInput
-            style={styles.ti}
-            placeholder="Confirm Password"
-            onChangeText={() => {}}
-          />
-        </View>
-      </View>
-      <View style={{flexDirection: 'row', marginTop: height * 0.01}}>
-        <Text style={styles.dont}>Already Have an Account?</Text>
+        <TouchableOpacity style={styles.login}>
+          <Text style={styles.text}>Signup</Text>
+        </TouchableOpacity>
         <Text
-          style={styles.su}
-          onPress={() => props.navigation.navigate('Login')}>
-          Login
+          style={{
+            marginTop: height * 0.01,
+            fontSize: scale(15),
+            color: 'black',
+          }}>
+          Signup with social account
         </Text>
-      </View>
-      <TouchableOpacity style={styles.login}>
-        <Text style={styles.text}>Signup</Text>
-      </TouchableOpacity>
-      <Text
-        style={{
-          marginTop: height * 0.03,
-          fontSize: scale(15),
-          fontWeight: 'bold',
-          color: 'black',
-        }}>
-        Signup with social account
-      </Text>
-      <View
-        style={{
-          flexDirection: 'row',
-          marginTop: height * 0.02,
-          width: width * 0.25,
-          justifyContent: 'space-between',
-        }}>
-        <Entypo name="facebook" size={scale(40)} color="blue" />
-        <AntDesign name="google" size={scale(40)} color="red" />
-      </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            marginTop: height * 0.01,
+          }}>
+          <Image
+            source={require('../assets/google.png')}
+            resizeMode="contain"
+            style={{width: width * 0.2, height: height * 0.05}}
+          />
+        </View>
+      </ScrollView>
     </ImageBackground>
   );
 };
