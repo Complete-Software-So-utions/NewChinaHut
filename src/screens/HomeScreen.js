@@ -133,24 +133,25 @@ const HomeScreen = () => {
             style={{marginTop: height * 0.03}}
             horizontal={true}>
             {categories.map((item, index) => (
-              <TouchableOpacity
-                onPress={() => handleFocus(item.name)}
-                style={[
-                  styles.zontal,
-                  {
-                    backgroundColor:
-                      item.highlight == true ? 'maroon' : 'white',
-                  },
-                ]}
-                key={index}>
-                <Text
+              <View key={index}>
+                <TouchableOpacity
+                  onPress={() => handleFocus(item.name)}
                   style={[
-                    styles.cat,
-                    {color: item.highlight == true ? 'white' : 'black'},
+                    styles.zontal,
+                    {
+                      backgroundColor:
+                        item.highlight == true ? 'maroon' : 'white',
+                    },
                   ]}>
-                  {item.name}
-                </Text>
-              </TouchableOpacity>
+                  <Text
+                    style={[
+                      styles.cat,
+                      {color: item.highlight == true ? 'white' : 'black'},
+                    ]}>
+                    {item.name}
+                  </Text>
+                </TouchableOpacity>
+              </View>
             ))}
           </ScrollView>
           {filterCat.length < 1 ? (
@@ -160,172 +161,174 @@ const HomeScreen = () => {
           )}
           <ScrollView>
             {filterCat.length < 1
-              ? menu[0].items.map((i, index) => (
-                  <TouchableOpacity
-                    onPress={() => getItem(i)}
-                    style={{
-                      flexDirection: 'row',
-                      width: width * 0.9,
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      marginTop: height * 0.01,
-                      backgroundColor: 'white',
-                      elevation: scale(5),
-                      borderRadius: scale(7),
-                      borderWidth: scale(1),
-                      borderColor: 'lightgrey',
-                      padding: width * 0.04,
-                    }}
-                    key={index}>
-                    <Text
+              ? menu[0].items.map((i, dex) => (
+                  <View key={dex}>
+                    <TouchableOpacity
+                      onPress={() => getItem(i)}
                       style={{
-                        fontSize: scale(15),
-                        fontWeight: 'bold',
-                        color: '#000',
+                        flexDirection: 'row',
+                        width: width * 0.9,
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        marginTop: height * 0.01,
+                        backgroundColor: 'white',
+                        elevation: scale(5),
+                        borderRadius: scale(7),
+                        borderWidth: scale(1),
+                        borderColor: 'lightgrey',
+                        padding: width * 0.04,
                       }}>
-                      {i.name}
-                    </Text>
-                    {i.singlePrice && !i.doublePrice ? (
-                      <Text style={{marginRight: width * 0.02}}>
-                        ${i.singlePrice}
+                      <Text
+                        style={{
+                          fontSize: scale(15),
+                          fontWeight: 'bold',
+                          color: '#000',
+                        }}>
+                        {i.name}
                       </Text>
-                    ) : i.doublePrice.small !== 'N/A' &&
-                      i.doublePrice.large !== 'N/A' ? (
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          width: width * 0.25,
-                          justifyContent: 'space-around',
-                          alignItems: 'center',
-                        }}>
-                        <View style={{alignItems: 'center'}}>
-                          <Text>Small</Text>
-                          <Text>${i.doublePrice.small}</Text>
+                      {i.singlePrice && !i.doublePrice ? (
+                        <Text style={{marginRight: width * 0.02}}>
+                          ${i.singlePrice}
+                        </Text>
+                      ) : i.doublePrice.small !== 'N/A' &&
+                        i.doublePrice.large !== 'N/A' ? (
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            width: width * 0.25,
+                            justifyContent: 'space-around',
+                            alignItems: 'center',
+                          }}>
+                          <View style={{alignItems: 'center'}}>
+                            <Text>Small</Text>
+                            <Text>${i.doublePrice.small}</Text>
+                          </View>
+                          <View style={{alignItems: 'center'}}>
+                            <Text>Large</Text>
+                            <Text>${i.doublePrice.large}</Text>
+                          </View>
                         </View>
-                        <View style={{alignItems: 'center'}}>
-                          <Text>Large</Text>
-                          <Text>${i.doublePrice.large}</Text>
+                      ) : i.doublePrice.small !== 'N/A' &&
+                        i.doublePrice.large == 'N/A' ? (
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            width: width * 0.25,
+                            justifyContent: 'space-around',
+                            alignItems: 'center',
+                          }}>
+                          <View style={{alignItems: 'center'}}>
+                            <Text>Small</Text>
+                            <Text>${i.doublePrice.small}</Text>
+                          </View>
+                          <View style={{alignItems: 'center'}}>
+                            <Text>Large</Text>
+                            <Text>{i.doublePrice.large}</Text>
+                          </View>
                         </View>
-                      </View>
-                    ) : i.doublePrice.small !== 'N/A' &&
-                      i.doublePrice.large == 'N/A' ? (
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          width: width * 0.25,
-                          justifyContent: 'space-around',
-                          alignItems: 'center',
-                        }}>
-                        <View style={{alignItems: 'center'}}>
-                          <Text>Small</Text>
-                          <Text>${i.doublePrice.small}</Text>
+                      ) : i.doublePrice.small == 'N/A' &&
+                        i.doublePrice.large !== 'N/A' ? (
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            width: width * 0.25,
+                            justifyContent: 'space-around',
+                            alignItems: 'center',
+                          }}>
+                          <View style={{alignItems: 'center'}}>
+                            <Text>Small</Text>
+                            <Text>{i.doublePrice.small}</Text>
+                          </View>
+                          <View style={{alignItems: 'center'}}>
+                            <Text>Large</Text>
+                            <Text>${i.doublePrice.large}</Text>
+                          </View>
                         </View>
-                        <View style={{alignItems: 'center'}}>
-                          <Text>Large</Text>
-                          <Text>{i.doublePrice.large}</Text>
-                        </View>
-                      </View>
-                    ) : i.doublePrice.small == 'N/A' &&
-                      i.doublePrice.large !== 'N/A' ? (
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          width: width * 0.25,
-                          justifyContent: 'space-around',
-                          alignItems: 'center',
-                        }}>
-                        <View style={{alignItems: 'center'}}>
-                          <Text>Small</Text>
-                          <Text>{i.doublePrice.small}</Text>
-                        </View>
-                        <View style={{alignItems: 'center'}}>
-                          <Text>Large</Text>
-                          <Text>${i.doublePrice.large}</Text>
-                        </View>
-                      </View>
-                    ) : null}
-                  </TouchableOpacity>
+                      ) : null}
+                    </TouchableOpacity>
+                  </View>
                 ))
-              : filterCat[0].items.map((i, index) => (
-                  <TouchableOpacity
-                    onPress={() => getItem(i)}
-                    style={{
-                      flexDirection: 'row',
-                      width: width * 0.9,
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      marginTop: height * 0.01,
-                      backgroundColor: 'white',
-                      elevation: scale(5),
-                      borderRadius: scale(7),
-                      borderWidth: scale(1),
-                      borderColor: 'lightgrey',
-                      padding: width * 0.04,
-                    }}
-                    key={index}>
-                    <Text style={{fontSize: scale(15), fontWeight: 'bold'}}>
-                      {i.name}
-                    </Text>
-                    {i.singlePrice && !i.doublePrice ? (
-                      <Text style={{marginRight: width * 0.02}}>
-                        ${i.singlePrice}
+              : filterCat[0].items.map((i, ind) => (
+                  <View key={ind}>
+                    <TouchableOpacity
+                      onPress={() => getItem(i)}
+                      style={{
+                        flexDirection: 'row',
+                        width: width * 0.9,
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        marginTop: height * 0.01,
+                        backgroundColor: 'white',
+                        elevation: scale(5),
+                        borderRadius: scale(7),
+                        borderWidth: scale(1),
+                        borderColor: 'lightgrey',
+                        padding: width * 0.04,
+                      }}>
+                      <Text style={{fontSize: scale(15), fontWeight: 'bold'}}>
+                        {i.name}
                       </Text>
-                    ) : i.doublePrice.small !== 'N/A' &&
-                      i.doublePrice.large !== 'N/A' ? (
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          width: width * 0.25,
-                          justifyContent: 'space-around',
-                          alignItems: 'center',
-                        }}>
-                        <View style={{alignItems: 'center'}}>
-                          <Text>Small</Text>
-                          <Text>${i.doublePrice.small}</Text>
+                      {i.singlePrice && !i.doublePrice ? (
+                        <Text style={{marginRight: width * 0.02}}>
+                          ${i.singlePrice}
+                        </Text>
+                      ) : i.doublePrice.small !== 'N/A' &&
+                        i.doublePrice.large !== 'N/A' ? (
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            width: width * 0.25,
+                            justifyContent: 'space-around',
+                            alignItems: 'center',
+                          }}>
+                          <View style={{alignItems: 'center'}}>
+                            <Text>Small</Text>
+                            <Text>${i.doublePrice.small}</Text>
+                          </View>
+                          <View style={{alignItems: 'center'}}>
+                            <Text>Large</Text>
+                            <Text>${i.doublePrice.large}</Text>
+                          </View>
                         </View>
-                        <View style={{alignItems: 'center'}}>
-                          <Text>Large</Text>
-                          <Text>${i.doublePrice.large}</Text>
+                      ) : i.doublePrice.small !== 'N/A' &&
+                        i.doublePrice.large == 'N/A' ? (
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            width: width * 0.25,
+                            justifyContent: 'space-around',
+                            alignItems: 'center',
+                          }}>
+                          <View style={{alignItems: 'center'}}>
+                            <Text>Small</Text>
+                            <Text>${i.doublePrice.small}</Text>
+                          </View>
+                          <View style={{alignItems: 'center'}}>
+                            <Text>Large</Text>
+                            <Text>{i.doublePrice.large}</Text>
+                          </View>
                         </View>
-                      </View>
-                    ) : i.doublePrice.small !== 'N/A' &&
-                      i.doublePrice.large == 'N/A' ? (
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          width: width * 0.25,
-                          justifyContent: 'space-around',
-                          alignItems: 'center',
-                        }}>
-                        <View style={{alignItems: 'center'}}>
-                          <Text>Small</Text>
-                          <Text>${i.doublePrice.small}</Text>
+                      ) : i.doublePrice.small == 'N/A' &&
+                        i.doublePrice.large !== 'N/A' ? (
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            width: width * 0.25,
+                            justifyContent: 'space-around',
+                            alignItems: 'center',
+                          }}>
+                          <View style={{alignItems: 'center'}}>
+                            <Text>Small</Text>
+                            <Text>{i.doublePrice.small}</Text>
+                          </View>
+                          <View style={{alignItems: 'center'}}>
+                            <Text>Large</Text>
+                            <Text>${i.doublePrice.large}</Text>
+                          </View>
                         </View>
-                        <View style={{alignItems: 'center'}}>
-                          <Text>Large</Text>
-                          <Text>{i.doublePrice.large}</Text>
-                        </View>
-                      </View>
-                    ) : i.doublePrice.small == 'N/A' &&
-                      i.doublePrice.large !== 'N/A' ? (
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          width: width * 0.25,
-                          justifyContent: 'space-around',
-                          alignItems: 'center',
-                        }}>
-                        <View style={{alignItems: 'center'}}>
-                          <Text>Small</Text>
-                          <Text>{i.doublePrice.small}</Text>
-                        </View>
-                        <View style={{alignItems: 'center'}}>
-                          <Text>Large</Text>
-                          <Text>${i.doublePrice.large}</Text>
-                        </View>
-                      </View>
-                    ) : null}
-                  </TouchableOpacity>
+                      ) : null}
+                    </TouchableOpacity>
+                  </View>
                 ))}
           </ScrollView>
         </View>
@@ -471,7 +474,7 @@ const styles = StyleSheet.create({
   },
   popup: {
     width: width * 0.9,
-    height: height * 0.4,
+    height: height * 0.35,
     backgroundColor: 'white',
     borderRadius: scale(10),
     padding: width * 0.03,
