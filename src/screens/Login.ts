@@ -21,13 +21,13 @@ import {CommonActions} from '@react-navigation/native';
 const {width, height} = Dimensions.get('window');
 
 const Login = props => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const validations = () => {
-    if (email == '') {
+    if (email.length < 1) {
       alert('Email is required!');
       return false;
     }
@@ -35,7 +35,7 @@ const Login = props => {
       alert('Please enter the correct email!');
       return false;
     }
-    if (password == '') {
+    if (password.length < 1) {
       alert('Password is required!');
       return false;
     }

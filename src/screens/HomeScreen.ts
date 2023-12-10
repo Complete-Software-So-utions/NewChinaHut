@@ -20,7 +20,7 @@ const {width, height} = Dimensions.get('window');
 const HomeScreen = () => {
   const [filterCat, setFilter] = React.useState([]);
   const [modalDat, setModalDat] = React.useState([]);
-  const [isModalVisible, setModalVisible] = React.useState(false);
+  const [isModalVisible, setModalVisible] = React.useState<boolean>(false);
   const [categories, setCategories] = React.useState([
     {name: 'Appetizers', highlight: true},
     {name: 'Soups', highlight: false},
